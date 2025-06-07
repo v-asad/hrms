@@ -53,7 +53,7 @@ export default function LoginPage() {
         {error && <div className="text-red-600">{error}</div>}
       </form>
       <div className="mt-4 text-sm">
-        Don't have an account?{" "}
+        {"Don't have an account? "}
         <a href="/auth/register" className="underline">
           Register
         </a>

@@ -18,8 +18,8 @@ async function main() {
         where: { name },
         update: {},
         create: { name },
-      })
-    )
+      }),
+    ),
   );
 
   // Define roles and their permissions

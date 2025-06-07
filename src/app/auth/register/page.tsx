@@ -52,9 +52,7 @@ export default function RegisterPage() {
           Register
         </button>
         {error && <div className="text-red-600">{error}</div>}
-        {success && (
-          <div className="text-green-600">Registered! Redirecting...</div>
-        )}
+        {success && <div className="text-green-600">Registered! Redirecting...</div>}
       </form>
       <div className="mt-4 text-sm">
         Already have an account?{" "}

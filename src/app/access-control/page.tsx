@@ -2,8 +2,16 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+// Import Prisma's User type (adjust the import path if needed)
+import { User } from "@prisma/client";
+
+interface UserInfo extends Pick<User, "id" | "email"> {
+  roles: string[];
+  permissions: string[];
+}
+
 export default function AccessControlPage() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<UserInfo | null>(null);
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -38,11 +46,18 @@ export default function AccessControlPage() {
     <div className="max-w-lg mx-auto mt-20 p-6 border rounded">
       <h1 className="text-2xl mb-4">Access Control</h1>
       <div>
-        <div><b>Your Roles:</b> {user.roles.join(", ") || "None"}</div>
-        <div><b>Your Permissions:</b> {user.permissions.join(", ") || "None"}</div>
+        <div>
+          <b>Your Roles:</b> {user.roles && user.roles.length > 0 ? user.roles.join(", ") : "None"}
+        </div>
+        <div>
+          <b>Your Permissions:</b>{" "}
+          {user.permissions && user.permissions.length > 0 ? user.permissions.join(", ") : "None"}
+        </div>
       </div>
       <div className="mt-6">
-        <a href="/dashboard" className="underline">Back to Dashboard</a>
+        <a href="/dashboard" className="underline">
+          Back to Dashboard
+        </a>
       </div>
       {/* You can add role/permission management UI here */}
     </div>
